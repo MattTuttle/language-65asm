@@ -5,6 +5,7 @@ Adds syntax highlighting to 65816/65C816/65802/6502/65C02 files in Atom, with ex
  - [cc65](http://oliverschmidt.github.io/cc65/)
  - [DASM](http://dasm-dillon.sourceforge.net/) (6502)
  - EDASM
+ - [KickAssembler](http://theweb.dk/KickAssembler/)
  - [Merlin](http://en.wikipedia.org/wiki/Merlin_(assembler))
  - [MPW IIgs Assembler](http://store.16sector.com/index.php?main_page=product_info&products_id=24)
  - [NinjaForce Assembler](http://www.ninjaforce.com/html/products_nf_assembler.html)

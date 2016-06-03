@@ -1,0 +1,202 @@
+'fileTypes': [
+  'asm', 's', 'a'
+]
+'name': 'Kick Assembler (C64)'
+'patterns': [
+	{
+		'match': '\\b(adc|and|asl|bit|clc|cld|cli|clv|cmp|cpx|cpy|dec|dex|dey|eor|inc|inx|iny|lda|ldx|ldy|lsr|nop|ora|pha|php|pla|plp|rol|ror|sbc|sec|sed|sei|sta|stx|sty|tax|txa|tay|tya|tsx|txs)\\b'
+		'name': 'keyword'
+	}
+	{
+		'match': '\\b(aac|aax|alr|anc|ane|arr|aso|asr|atx|axa|axs|dcm|dcp|dop|hlt|ins|isb|isc|jam|kil|lae|lar|las|lax|lse|lxa|oal|rla|rra|sax|sbx|skb|sha|shs|say|shx|shy|slo|skw|sre|sxa|sya|tas|top|xaa|xas)\\b'
+		'name': 'illegal'
+	}
+	{
+		'match': '\\b(bcc|bcs|beq|bmi|bne|bpl|brk|bvc|bvs|jmp|jsr|rti|rts)\\b'
+		'name': 'keyword.control'
+	}
+	{
+		'begin': '/\\*'
+		'beginCaptures':
+			'0':
+				'name': 'punctuation.definition.comment'
+		'end': '\\*/\\n?'
+		'name': 'comment.block'
+	}
+	{
+		'match': '(//|;).*$'
+		'name': 'comment.line'
+	}
+	{
+		'match': '(?:^|\\s)(\\.(word|byte|text|dword))\\b'
+		'name': 'storage.type.kickass'
+	}
+	{
+		'match': '\\b(CmdArgument|Hashtable)\\b'
+		'name': 'storage.type.kickass'
+	}
+	{
+		'match': '\\b(toIntString|toBinaryString|toOctalString|toHexString)\\b'
+		'name': 'support.function.string'
+	}
+	{
+		'match': '\\b(abs|acos|asin|atan|atan2|cbrt|ceil|cos|cosh|exp|expm1|floor|hypot|IEEEremainder|log|log10|log1p|max|min|pow|mod|random|round|signum|sin|sinh|sqrt|tan|tanh|toDegrees|toRadians)\\b'
+		'name': 'support.function.math'
+	}
+	{
+		'match': '\\b(LoadBinary|LoadPicture|LoadSid|createFile)\\b'
+		'name': 'support.function.file'
+	}
+	{
+		'match': '\\b(Matrix|RotationMatrix|ScaleMatrix|MoveMatrix|PerspectiveMatrix|Vector)\\b'
+		'name': 'support.function.3d'
+	}
+	{
+		'match': '(?:^|\\s)(\\.(var|label|const))\\b'
+		'name': 'storage.type.keyword.kickass.field'
+	}
+	{
+		'match': '(?:^|\\s)(\\.(struct|enum))\\b'
+		'name': 'keyword.kickass.function.object'
+	}
+	{
+		'match': '(?:^|\\s)(\\.(eval|fill|print|printnow|import|align|assert|asserterror|error))\\b'
+		'name': 'keyword.kickass.function'
+	}
+	{
+		'match': '(?:^|\\s)(\\.(pc|importonce|pseudopc|return|eval))\\b'
+		'name': 'keyword.kickass'
+	}
+	{
+		'match': '\\b(true|false)\\b'
+		'name': 'constant.language'
+	}
+	{
+		'match': '\\b(BLACK|WHITE|RED|CYAN|PURPLE|GREEN|BLUE|YELLOW|ORANGE|BROWN|LIGHT_RED|DARK_GRAY|GRAY|DARK_GREY|GREY|LIGHT_GREEN|LIGHT_BLUE|LIGHT_GRAY|LIGHT_GREY)\\b'
+		'name': 'constant.language.color'
+	}
+	{
+		'match': '\\b(LDA_IMM|LDA_ZP|LDA_ZPX|LDX_ZPY|LDA_IZPX|LDA_IZPY|LDA_ABS|LDA_ABSX|LDA_ABSY|JMP_IND|BNE_REL|RTS)\\b'
+		'name': 'constant.language.opcodes'
+	}
+	{
+		'match': '\\b(BF_C64FILE|BF_BITMAP_SINGLECOLOR|BF_KOALA|BF_FLI)\\b'
+		'name': 'constant.language.file'
+	}
+	{
+		'match': '\\b(AT_ABSOLUTE|AT_ABSOLUTEX|AT_ABSOLUTEY|AT_IMMEDIATE|AT_INDIRECT|AT_IZEROPAGEX|AT_IZEROPAGEY|AT_NONE)\\b'
+		'name': 'constant.language.pseudocommand'
+	}
+	{
+		'match': '\\b(PI|E)\\b'
+		'name': 'constant.language.math'
+	}
+	{
+		'match': '\\b(list|List)\\(\\s*(\\$?\\d+)*\\s*\\)'
+		'name': 'list'
+		'captures':
+			'1':
+				'name': 'storage.type'
+			'2':
+				'name': 'variable.parameter'
+	}
+	{
+		'match': '(?:^|\\s)(\\.for)\\s*\\((var)\\b'
+		'captures':
+			'1':
+				'name': 'keyword.control.for'
+			'2':
+				'name': 'storage.type.for'
+	}
+	{
+		'match': '(?:^|\\s)((\\.if)\\b|(else)\\b)'
+		'name': 'keyword.control'
+	}
+	{
+		'begin': '"'
+		'end': '"'
+		'name': 'string.quoted.double'
+		'patterns': [
+			{
+				'match': '\\\\.'
+				'name': 'constant.character.escape'
+			}
+		]
+	}
+	{
+		'match': '^\\s*(((!)|(!?([A-Za-z_][A-Za-z0-9_]*)+))\\:)'
+		'name': 'label'
+		'captures':
+			'1':
+				'name': 'meta.label.identifier'
+			'2':
+				'name': 'entity.name.label'
+	}
+	{
+		'match': '^\\s*((\\.filenamespace)\\s*([A-Za-z_][A-Za-z0-9_]*))\\b'
+		'captures':
+			'1':
+				'name': 'meta.filenamespace.identifier'
+			'2':
+				'name': 'keyword.type.filenamespace'
+			'3':
+				'name': 'entity.name.filenamespace'
+	}
+	{
+		'match': '(?:^|\\s)((\\.namespace)\\s*([A-Za-z_][A-Za-z0-9_]*))\\b'
+		'captures':
+			'1':
+				'name': 'meta.namespace.identifier'
+			'2':
+				'name': 'keyword.type.namespace'
+			'3':
+				'name': 'entity.name.namespace'
+	}
+	{
+		'match': '(?:^|\\s)((\\.pseudocommand)\\s*([A-Za-z_][A-Za-z0-9_]*))\\b'
+		'captures':
+			'1':
+				'name': 'meta.pseudocommand.identifier'
+			'2':
+				'name': 'storage.type.pseudocommand'
+			'3':
+				'name': 'entity.name.pseudocommand'
+	}
+	{
+		'match': '(?:^|\\s)((\\.function)\\s*([A-Za-z_][A-Za-z0-9_]*))\\b'
+		'captures':
+			'1':
+				'name': 'meta.function.identifier'
+			'2':
+				'name': 'storage.type.function'
+			'3':
+				'name': 'entity.name.function'
+	}
+	{
+		'match': '(?:^|\\s)((\\.macro)\\s*([A-Za-z_][A-Za-z0-9_]*))\\b'
+		'captures':
+			'1':
+				'name': 'meta.macro.identifier'
+			'2':
+				'name': 'storage.type.macro'
+			'3':
+				'name': 'entity.name.macro'
+	}
+	{
+		'match': '#?\\$[0-9a-fA-F]+'
+		'name': 'constant.numeric.hex'
+	}
+	{
+		'match': '\\#[0-9a-fA-F]+\\b'
+		'name': 'constant.numeric.decimal'
+	}
+	{
+		'match': '\\b\\d+\\b'
+		'name': 'constant.numeric.decimal'
+	}
+	{
+		'match': '\\#%[0-1]+\\b'
+		'name': 'constant.numeric.binary'
+	}
+]
+'scopeName': 'source.assembly.kickassembler'
